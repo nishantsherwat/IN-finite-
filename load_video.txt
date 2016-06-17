@@ -1,0 +1,51 @@
+#include "opencv2/highgui/highgui.hpp"
+#include <iostream>
+#include<string>
+
+using namespace cv;
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+	String s = "C:/Users/Ifshita/Videos/aa.avi";
+	VideoCapture cap(s); // open the video file for reading
+
+	if (!cap.isOpened())  // if not success, exit program
+	{
+		cout << "Cannot open the video file" << endl;
+		return -1;
+	}
+
+	
+
+	double fps = cap.get(CV_CAP_PROP_FPS); //get the frames per
+
+	cout << "Frame per seconds : " << fps << endl;
+
+	namedWindow("ifshita video", CV_WINDOW_AUTOSIZE); 
+
+	while (1)
+	{
+		Mat frame;
+
+		bool bSuccess = cap.read(frame); 
+
+		if (!bSuccess) //if not success, break loop
+		{
+			cout << "Cannot read the frame from video file" << endl;
+			break;
+		}
+
+		imshow("ifshita video", frame); 
+		cvWaitKey();
+
+		if (waitKey(30) == 27) 
+		{
+			cout << "esc key is pressed by user" << endl;
+			break;
+		}
+	}
+
+	return 0;
+
+}

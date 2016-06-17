@@ -1,0 +1,39 @@
+ #include <opencv2/core/core.hpp>
+
+ #include <opencv2/highgui/highgui.hpp>
+
+ #include <iostream>
+ #include <string>
+
+using namespace cv;
+
+ using namespace std;
+
+ int main(int argc, char** argv)
+{
+	     string imageName("?C:/Users/Ifshita/Pictures/S1.jpg"); 
+	   if (argc > 1)
+		     {
+	         imageName = argv[1];
+		     }
+	
+		     Mat image;
+	
+			 image = imread("c:/Users/Ifshita/Pictures/S1.jpg");
+	
+			 if (image.empty())
+			 {
+				 cout << "Could not open or find the image" << std::endl;
+				
+				 cvWaitKey(0);
+				 return -1;
+			 }
+	
+		     namedWindow("Display window", WINDOW_AUTOSIZE); 
+	 
+                imshow( "Display window", image );                   
+
+                 cvwaitKey(0);                                          
+    
+	     return 0;
+	}
